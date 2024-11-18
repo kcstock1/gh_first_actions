@@ -1,5 +1,11 @@
 name: Output information
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      Is_Cron:
+        description: "Cron or Main"
+        default: "false"
+        required: true
 env:
   ecr_repo: ${{ github.ref == 'refs/heads/main' && 'value_for_main_branch' || 'value_for_other_branches' }}
 jobs:
@@ -7,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output GitHub context
-        run: echo "${{ toJSON( github.event ) }}"
+        run: echo "${{ toJSON( inputs.Is_Cron ) }}"
