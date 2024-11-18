@@ -1,8 +1,10 @@
 name: Output information
 on: workflow_dispatch
+env:
+  ecr_repo: ${{ github.ref == 'refs/heads/main' && 'value_for_main_branch' || 'value_for_other_branches' }}
 jobs:
   info:
     runs-on: ubuntu-latest
     steps:
       - name: Output GitHub context
-        run: echo "${{ toJSON( github ) }}"
+        run: echo "${{ toJSON( github.event ) }}"
