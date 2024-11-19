@@ -1,0 +1,13 @@
+process_inputs:
+    name: process_cron
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && ${{ ! startsWith(github.ref, 'refs/tags/cron') }}
+
+    permissions:
+      id-token: write
+      contents: read
+ 
+    steps:
+      - name: Set env
+        run: |
+           echo "ecr_repo=mymove-concierge" >> $ecr_repo
