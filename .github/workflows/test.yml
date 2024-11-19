@@ -19,6 +19,6 @@ jobs:
         run: echo $ecr_repo
       - name: Set env
         run: |
-          echo "ecr_repo=mymove-concierge" >> $ecr_repo
+          echo "ecr_repo=mymove-cron" >> $ecr_repo
       - name: print env
         run: echo $ecr_repo
