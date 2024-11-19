@@ -17,3 +17,5 @@ jobs:
         run: echo "ecr_repo=mymove-cron" >> $GITHUB_ENV
       - name: print env
         run: echo "$ecr_repo"
+      - name: print
+        run: echo "${{ github.ref }}"
