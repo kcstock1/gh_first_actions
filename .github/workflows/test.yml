@@ -3,14 +3,13 @@ on:
   release:
     types: [published]
 env:
-  # ecr_repo: mymove-concierge
-  ecr_repo : ${{ contains(github.ref,'refs/tags/cron') && 'refs/tags/cron' || 'mymove-concierge' }}
+  ecr_repo: mymove-concierge
+  # ecr_repo : ${{ contains(github.ref,'refs/tags/cron') && 'refs/tags/cron' || 'mymove-concierge' }}
 jobs:
   process_inputs:
     name: process_cron
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && ${{ ! startsWith(github.ref, 'refs/tags/cron') }}
-
+    if: github.event_name == 'release' && ${{ startsWith(github.ref, 'refs/tags/cron') }}
     steps:
       - name: print initial
         run: echo "$ecr_repo"
